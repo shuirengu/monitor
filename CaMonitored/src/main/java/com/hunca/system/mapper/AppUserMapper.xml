@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hunca.system.mapper.AppUserMapper">
+ 
+ 	<select id="selectUserIdList" resultType="int">
+ 		select userId from app_user where appId = #{appId}
+ 	</select>
+ 	<select id="selectAppIdList" resultType="int">
+ 		select appId from app_user where userId = #{userId}
+ 	</select>
+ 	    <insert id="doUpdateAppUser">
+    	insert into app_user(userId,appId)
+    		values 
+    		 <foreach collection="appIds"
+                 separator=","
+                 item="appId">
+                (#{userId},#{appId}) 
+        </foreach>
+    </insert>
+    <delete id="deleteObjectByUserId">
+    	delete from app_user where userId = #{id}
+    </delete>
+</mapper>

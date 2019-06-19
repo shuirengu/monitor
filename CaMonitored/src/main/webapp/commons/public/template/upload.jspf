@@ -1,0 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/public/css/webuploader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/public/css/uploader.css" />
+<script src="${pageContext.request.contextPath }/static/public/js/webuploader.min.js" type="text/javascript" charset="utf-8"></script>

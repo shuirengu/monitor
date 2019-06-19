@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hunca.system.mapper.SysUserMapper">
+	<resultMap type="com.hunca.system.model.SysUser" id="sysUserResultMap">
+		<id property="userId" column="userId"/>
+		<result property="certSn" column="certSn"/>
+		<result property="realName" column="realName"/>
+		<result property="post" column="post"/>
+		<result property="phone" column="phone"/>
+		<result property="email" column="email"/>
+		<result property="createTime" column="createTime"/>
+		<result property="lastLoginTime" column="lastLoginTime"/>
+		<result property="isUse" column="isUse"/>
+	</resultMap>
+ 
+	 <sql id="queryWhereId">
+       <where>
+          <if test="username!=null and username!=''">
+            realName like concat("%",#{username},"%")
+          </if>
+       </where>
+   </sql>
+	<select id="getUserBySn" resultMap="sysUserResultMap">
+		SELECT
+			sys_user.userId,
+			sys_user.certSn,
+			sys_user.realName,
+			sys_user.post,
+			sys_user.phone,
+			sys_user.email,
+			sys_user.createTime,
+			sys_user.lastLoginTime,
+			sys_user.isUse
+		FROM
+			sys_user 
+	
+	</select>
+	<select id="getRowCount" resultType="int">
+       select count(*)
+       from sys_user
+       <include refid="queryWhereId"/>
+   </select>	
+	<!-- 添加用户 -->
+ 	<insert id="insertObject" parameterType="com.hunca.system.model.SysUser" >
+		INSERT 
+			INTO 
+		sys_user (
+			userId,
+			certSn,
+			realName,
+			post,
+			phone,
+			email,
+			createTime,
+			isUse
+		)VALUES(
+			#{userId},
+			#{certSn},
+			#{realName},
+			#{post},
+			#{phone},
+			#{email},
+			now(),
+			#{isUse}
+		)
+	</insert> 
+	<!-- 根据条件精准查询用户 -->
+	<select id="getSysUserByParam" parameterType="map" resultMap="sysUserResultMap">
+		SELECT
+			sys_user.userId,
+			sys_user.certSn,
+			sys_user.realName,
+			sys_user.post,
+			sys_user.phone,
+			sys_user.email,
+			sys_user.createTime,
+			sys_user.lastLoginTime,
+			sys_user.isUse
+		FROM
+			sys_user
+		WHERE 1 = 1
+
+		<if test="userId != null and userId != ''">
+			AND userId = #{userId}
+		</if>
+		<if test="certSn != null and certSn != ''">
+			AND certSn = #{certSn}
+		</if>
+		<if test="realName != null and realName != ''">
+			AND realName = #{realName}
+		</if>
+		<if test="post != null and post != ''">
+			AND post = #{post}
+		</if>
+		<if test="phone != null and phone != ''">
+			AND phone = #{phone}
+		</if>
+		<if test="email != null and email != ''">
+			AND email = #{email}
+		</if>
+		<if test="isUse != null and isUse != ''">
+			AND isUse = #{isUse}
+		</if>
+	</select>
+	<!-- 根据条件模糊查询用户 -->
+	<select id="getSysUserList" parameterType="map" resultMap="sysUserResultMap">
+		SELECT
+			userId,
+			certSn,
+			realName,
+			post,
+			phone,
+			email,
+			createTime,
+			lastLoginTime,
+			isUse
+		FROM
+			sys_user
+		WHERE 1 = 1
+		<if test="userId != null and userId != ''">
+			AND userId like concat("%",#{userId},"%")
+		</if>
+		<if test="certSn != null and certSn != ''">
+			AND certSn like concat("%",#{certSn},"%")
+		</if>
+		<if test="realName != null and realName != ''">
+			AND realName like concat("%",#{realName},"%")
+		</if>
+		<if test="post != null and post != ''">
+			AND post like concat("%",#{post},"%")
+		</if>
+		<if test="phone != null and phone != ''">
+			AND phone like concat("%",#{phone},"%")
+		</if>
+		<if test="email != null and email != ''">
+			AND email like concat("%",#{email},"%")
+		</if>
+		<if test="isUse != null and isUse != ''">
+			AND isUse = #{isUse}
+		</if>
+		ORDER BY createTime DESC
+	</select>
+	
+	
+	<!-- 通过ID查询用户 -->
+	<select id="findObjectById" parameterType="integer" resultMap="sysUserResultMap">
+		SELECT
+			userId,
+			certSn,
+			realName,
+			post,
+			phone,
+			email,
+			createTime,
+			lastLoginTime,
+			isUse
+		FROM
+			sys_user
+		WHERE 1 = 1
+		AND userId = #{id}
+	</select>
+	
+	<!-- 修改用户信息 -->
+	<update id="updateObject">
+		UPDATE
+		sys_user
+		<set>
+			<if test="certSn != null and certSn != ''">
+				certSn = #{certSn},
+			</if>
+			<if test="realName != null and realName != ''">
+				realName = #{realName},
+			</if>
+			<if test="post != null and post != ''">
+				post = #{post},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
+			<if test="isUse != null and isUse != ''">
+				isUse = #{isUse}
+			</if>
+		</set>
+		WHERE 1 = 1
+		AND userId = #{userId}
+	</update>
+	 <!-- 查询用户以及用户对应部门信息(包括部门名称)-->
+   <select id="findPageObjects"
+           resultType="com.hunca.system.model.SysUser">
+       select 
+       sys_user.userId,
+			sys_user.certSn,
+			sys_user.realName,
+			sys_user.post,
+			sys_user.phone,
+			sys_user.email,
+			sys_user.createTime,
+			sys_user.lastLoginTime,
+			sys_user.isUse
+       from sys_user
+       <include refid="queryWhereId"/>
+       order by createTime desc
+       limit #{startIndex},#{pageSize}
+   </select>
+	<!-- 禁用或启用用户信息 -->
+   <update id="validById">
+        update sys_user
+        set isUse=#{valid}
+            
+        where userId=#{id}
+   </update>
+
+ 
+   
+ <delete id="deleteObject">
+          delete from sys_user
+          where userId=#{userId}
+    </delete>
+   
+    
+   <update id="setLastLoginTime">
+   update sys_user set lastLoginTime= now() 
+   where userId = #{userId}
+   </update>
+</mapper>

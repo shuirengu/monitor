@@ -1,0 +1,161 @@
+.content {
+	padding: 15px;
+}
+
+.content .page-header {
+	margin: 0px;
+}
+
+.content .page-header h3 {
+	margin-top: 5px;
+}
+
+.form-wrapper {
+	margin-top: 15px;
+}
+
+.form-wrapper .form-control {
+	border-radius: 2px;
+}
+
+.form-wrapper .form-control {
+	margin-bottom: 10px;
+}
+
+.form-wrapper .form-tool {
+	clear: both;
+}
+
+.form-wrapper .form-tool .btn {
+	border-radius: 1px;
+	float: right;
+}
+
+.form-wrapper .form-tool .btn-default {
+	margin-right: 10px;
+}
+
+.form-wrapper .col {
+	float: left;
+	padding-right: 15px;
+}
+
+.form-wrapper .row{
+	clear: both;
+	/* padding: 0px 15px; */
+	margin: 0px;
+}
+
+/* 编辑框 */
+.edit-wrapper {
+	/* padding: 15px; */
+	
+}
+
+.edit-wrapper h3 {
+	padding: 15px;
+	border-bottom: 1px solid #ccc;
+}
+
+.edit-wrapper .form-control {
+	border-radius: 2px;
+}
+
+/* .edit-wrapper .col {
+	padding: 15px;
+	float: left;
+}
+
+.edit-wrapper .row {
+	clear: both;
+	padding: 0px 15px;
+	margin: 0px;
+} */
+
+.modal-body{
+	padding: 0px;
+}
+
+.modal-body .col{
+	padding: 15px;
+	float: left;
+}
+
+.modal-body .row{
+	clear: both;
+	padding: 0px 15px;
+	margin: 0px;
+}
+
+.modal-content{
+	border-radius:2px;	
+}
+.modal-footer{
+	clear: both;
+}
+
+.modal-footer .btn{
+	margin-right:15px;
+}
+
+/* 表格 */
+/* .table>thead {
+	background-color: #337AB7;
+}
+
+.table>thead>tr>th {
+	border-bottom: none !important;
+	color: #ffffff;
+	padding: 5px !important;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+	padding: 6px 6px !important;
+}
+
+.table>thead>tr>td {
+	padding: 0px;
+}
+
+table.dataTable.no-footer {
+	border-bottom: none !important;
+	margin-top: 15px;
+	margin-left: 0px;
+	margin-right: 0px;
+} */
+
+.table {
+	/* margin-top:15px; */
+	
+}
+
+/* 搜索栏 */
+.search-wrapper {
+	margin-top: 10px;
+	width: 100%;
+	/* margin-left:-15px;
+		margin-right:-15px; */
+}
+
+.search-wrapper .input-wrapper {
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 25%;
+	float: left;
+}
+
+.search-wrapper .input-wrapper .form-control {
+	border-radius: 2px;
+}
+
+.layui-table-header thead{
+	background-color: #337AB7 !important;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em{
+	background-color: #337AB7 !important;
+}
+
+.fa-remove{
+	
+}

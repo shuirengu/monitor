@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hunca.system.mapper.NotifyUserMapper">
+ 	
+ 	<select id="selectObjectByUserId" resultType="com.hunca.system.model.NotifyUser">
+ 		select id,email,phone,realName from notify_user where id in 
+ 		<foreach collection="userIds" open="(" close=")" separator="," item="userId">
+ 			#{userId} 
+ 		</foreach>	
+ 		and state = 1
+ 	</select>
+ 	
+ 	<sql id="queryWhereId">
+       <where>
+          <if test="username!=null and username!=''">
+            realName like concat("%",#{username},"%")
+          </if>
+       </where>
+   </sql>
+   <select id="getRowCount" resultType="int">
+       select count(*)
+       from notify_user
+       <include refid="queryWhereId"/>
+   </select>	
+   <delete id="deleteObject">
+          delete from notify_user
+          where id=#{id}
+    </delete>
+    	<update id="updateObject">
+		UPDATE
+		notify_user
+		<set>
+			<if test="realName != null and realName != ''">
+				realName = #{realName},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
+		</set>
+		WHERE 1 = 1
+		AND id = #{id}
+	</update>
+	
+	
+	 <select id="findPageObjects"
+           resultType="com.hunca.system.model.NotifyUser">
+       select 
+       notify_user.id,
+			notify_user.state,
+			notify_user.realName,
+			notify_user.phone,
+			notify_user.email,
+			notify_user.createTime
+       from notify_user
+       <include refid="queryWhereId"/>
+       order by createTime desc
+       limit #{startIndex},#{pageSize}
+   </select>
+	 <select id="doFindObjectById"
+           resultType="com.hunca.system.model.NotifyUser">
+       select 
+			notify_user.id,
+			notify_user.realName,
+			notify_user.phone,
+			notify_user.email,
+			notify_user.state,
+			notify_user.createTime
+       from notify_user 
+       where id = #{id}
+      
+   </select>
+   <insert id="insertObject"> 
+		INSERT 
+			INTO 
+		notify_user (
+			id,
+			realName,
+			phone,
+			email,
+			createTime,
+			state
+		)VALUES(
+			#{id},
+			#{realName},
+			#{phone},
+			#{email},
+			now(),
+			#{state}
+		)
+   </insert>
+   <!-- 禁用或启用用户信息 -->
+   <update id="validById">
+        update notify_user
+        set state=#{valid}
+        where id=#{id}
+   </update>
+   
+</mapper>

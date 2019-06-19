@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hunca.system.mapper.ApplicationMapper">
+ 	<insert id="insertObject" parameterType="com.hunca.system.model.App">
+ 		insert into app (appName, appState,appIp,appPort,serverId,createTime,updateTime) values (#{appName},#{appState}, #{appIp,jdbcType=VARCHAR}, 
+      #{appPort}, #{serverId},now(),now())
+ 	</insert>
+ 	<select id="selectObjectCount" resultType="int">
+ 		select count(id) from app where serverId = #{serverId}
+ 	</select>
+ 	<update id="UpdateObjectState" >
+ 		update app set appState = #{appState},updateTime = now() where id = #{id}
+ 	</update>
+ 	<select id="selectObjectId" resultType="int">
+ 		select id from app where appName = #{appName} and serverId = #{serverId}
+ 	</select>
+ 	
+ 	<sql id="queryWhereId">
+       <where>
+          <if test="appName!=null and appName!=''">
+            appName like concat("%",#{appName},"%")
+          </if>
+       </where>
+   </sql>
+   <select id="getRowCount" resultType="int">
+       select count(id)
+       from app
+       <include refid="queryWhereId"/>
+   </select>	
+    <select id="findPageObjects"
+           resultType="com.hunca.system.model.App">
+       select 
+       app.id,
+			app.appName,
+			app.appIp,
+			app.appPort,
+			app.appstate,
+			app.createTime,
+			app.updateTime,
+			app.serverId
+       from app
+       <include refid="queryWhereId"/>
+       order by updateTime desc
+       limit #{startIndex},#{pageSize}
+   </select>
+    <select id="findAllAppObject"
+           resultType="com.hunca.system.model.App">
+       select
+       		app.id,
+			app.appName,
+			app.appIp,
+			app.appPort,
+			app.appstate,
+			app.createTime,
+			app.updateTime,
+			app.serverId
+       from app WHERE appstate = 'UP'
+   </select>
+   <delete id="deleteById">
+   		delete from app where id = #{id}
+   	</delete>
+
+	<select id="doFindObjectById" resultType="com.hunca.system.model.App">
+		select
+			app.id,
+			app.appName,
+			app.appIp,
+			app.appPort,
+			app.appstate,
+			app.createTime,
+			app.updateTime,
+			app.serverId
+       from app WHERE id = #{id}
+	</select>
+
+	<update id="doUpdateObject" parameterType="com.hunca.system.model.App">
+		update app set
+		<if test="appName != null and appName != '' ">
+			appName = #{appName}
+		</if>
+		<if test="appIp != null and appIp != '' ">
+			appIp = #{appIp}
+		</if>
+		<if test="appPort != null and appPort != '' ">
+			appPort = #{appPort}
+		</if>
+		updateTime = now()
+		where id = #{id}
+
+	</update>
+</mapper>

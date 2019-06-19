@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/public/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/public/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/public/layui/css/layui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/public/css/public.css" />
+
+<script src="${pageContext.request.contextPath }/static/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath }/static/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<%-- <script src="${pageContext.request.contextPath }/static/public/js/layer.min.js" type="text/javascript" charset="utf-8"></script> --%>
+<script src="${pageContext.request.contextPath }/static/public/js/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+<%-- <script src="${pageContext.request.contextPath }/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script> --%>
+<script src="${pageContext.request.contextPath }/static/public/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath }/static/public/js/public.js" type="text/javascript" charset="utf-8"></script>
+<%-- <script src="${pageContext.request.contextPath }/static/public/js/layer.ext.js" type="text/javascript" charset="utf-8"></script> --%>
+
+<!--[if lt IE 9]>
+	<script src="${pageContext.request.contextPath }/static/public/js/html5shiv.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath }/static/public/js/respond.min.js" type="text/javascript" charset="utf-8"></script>
+<![endif]-->

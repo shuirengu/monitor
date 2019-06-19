@@ -1,0 +1,224 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hunca</groupId>
+	<artifactId>Monitor</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<repositories>
+		<!-- 配置nexus远程仓库 -->
+		<repository>
+			<id>nexus</id>
+			<name>Nexus Snapshot Repository</name>
+			<!-- <url>http://192.168.86.65:8000/nexus/content/groups/public/</url> -->
+			<url>http://192.168.88.20:8000/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.8.RELEASE</version>
+	</parent>
+
+
+
+	<dependencies>
+
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- 数据库连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.18</version>
+		</dependency>
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- 分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+
+		</dependency>
+
+		<!-- jsp支持 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--servlet支持开启 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<!-- jstl 支持开启 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- 内部开发包 -->
+		<dependency>
+			<groupId>com.hunca</groupId>
+			<artifactId>kits</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<!-- json转换 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+<!--引入插件lombok 自动的set/get/构造方法插件 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- <dependency>
+			<groupId>com.netflix.feign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>8.18.0</version>
+		</dependency> -->
+
+		<!-- feign -->
+		<!-- <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency> -->
+
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- 热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- 测试 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.6</version>
+		</dependency>
+		 <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-mail</artifactId>
+        
+    </dependency>
+
+
+
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<!-- <dependency> 
+			<groupId>org.springframework.cloud</groupId> 
+			<artifactId>spring-cloud-config-server</artifactId> 
+		</dependency> -->
+<!-- webService支持 -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+			<version>3.1.12</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.xml.bind</groupId>
+					<artifactId>jaxb-impl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.xml.bind</groupId>
+					<artifactId>jaxb-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	<build>
+		<!-- 打包名称 -->
+		<finalName>CaMonitored</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<includeSystemScope>true</includeSystemScope>
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+	<resources>
+		<resource>
+			<directory>src/main/java</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+			</includes>
+			<filtering>false</filtering>
+		</resource>
+		<resource>
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+			</includes>
+			<filtering>false</filtering>
+		</resource>
+	</resources>
+	</build>
+</project>
