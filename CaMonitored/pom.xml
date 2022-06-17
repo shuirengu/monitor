@@ -103,7 +103,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.47</version>
+			<version>1.2.83</version>
 		</dependency>
 <!--引入插件lombok 自动的set/get/构造方法插件 -->
 		<dependency>
